@@ -7,16 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.app.recommenu.di.Downloader
-import com.app.recommenu.di.DownloaderFactory
+import com.app.recommenu.demo.Car
 import com.app.recommenu.ui.theme.RecommenuTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private  lateinit var  baseApp: BaseApp
-    private var  download= DownloaderFactory.create()
+    @Inject lateinit var car:Car
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -30,9 +29,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        baseApp = BaseApp()
-        baseApp.car.getCar()
-        download.getDownload()
+        car.getCar()
     }
 }
 
